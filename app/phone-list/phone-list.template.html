@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+</html>
+<html ng-app="gameList">
+
+<head>
+    <script src="../AngularJs.js"></script>
+    <script src="../app.module.js"></script>
+    <script src="phone-list.module.js"></script>
+    <script src="phone-list.component.js"></script>
+
+</head>
+
+<body ng-controller="GameListController">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <!--Sidebar content-->
+
+                <p>
+                    Search:
+                    <input ng-model="query">
+                </p>
+
+                <p>
+                    Sort by:
+                    <select ng-model="orderProp">
+                        <option value="name">Alphabetical</option>
+                        <option value="age">Newest</option>
+                    </select>
+                </p>
+
+            </div>
+            <div class="col-md-10">
+                <!--Body content-->
+                <ul class="phones">
+                    <li ng-repeat="game in games | filter:query | orderBy:orderProp" ng-click="ShowHide()"
+                        style="display: inline-block; list-style: none; padding-left: 10px; cursor: pointer;">
+                        <img ng-src="{{game.icon_2}}" alt="photo">
+                        <p>{{game.name}}</p>
+                        <img ng-hide="IsVisible" ng-src="{{game.background}}" alt="photo">
+                    </li>
+                </ul>
+                <button ng-click="loadMore()"
+                    style="display: inline-block; outline: none; background-color: #555555; color: aliceblue; padding: 15px 32px; text-transform: uppercase; cursor: pointer;">load
+                    more</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
